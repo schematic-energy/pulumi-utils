@@ -90,16 +90,16 @@ exports.stringify = function(obj) {
 exports.i = pulumi.interpolate;
 
 /** Initialize a new pulumi context with standard tags, stack name, config, etc. */
-exports.initialize = function(orgName) {
-    let repoTag = `${orgName}:repo`;
+exports.initialize = function() {
+    let cfg = new pulumi.Config(pulumi.getProject());
     let tags = { "pulumi:project": pulumi.getProject(),
                  "pulumi:stack": pulumi.getStack(),
-                 repoTag: git.repo() };
+                 "git:repository": git.repo() };
 
     let ctx = new PulumiContext().withProps({tags: tags});
-    ctx.cfg = new pulumi.Config(pulumi.getProject());
+    ctx.cfg = cfg;
     ctx.env = pulumi.getStack();
-    ctx.orgName = orgName;
+    ctx.orgName = cfg.require('organization');
     ctx.region = pulumi.output(aws.getRegion({}, {async: true})).name;
     ctx.account = pulumi.output(aws.getCallerIdentity({}, {async: true})).accountId;
     return ctx;
