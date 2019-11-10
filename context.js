@@ -91,9 +91,10 @@ exports.i = pulumi.interpolate;
 
 /** Initialize a new pulumi context with standard tags, stack name, config, etc. */
 exports.initialize = function(orgName) {
+    let repoTag = `${orgName}:repo`;
     let tags = { "pulumi:project": pulumi.getProject(),
                  "pulumi:stack": pulumi.getStack(),
-                 `orgName:${repo}`: git.repo() };
+                 repoTag: git.repo() };
 
     let ctx = new PulumiContext().withProps({tags: tags});
     ctx.cfg = new pulumi.Config(pulumi.getProject());
