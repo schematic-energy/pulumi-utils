@@ -25,6 +25,8 @@ const execScript = async function(script) {
     return result;
 };
 
+exports.execScript = execScript;
+
 class ScriptResource extends pulumi.dynamic.Resource {
 
     constructor(name, props, opts) {
