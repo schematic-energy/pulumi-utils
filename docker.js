@@ -21,6 +21,7 @@ exports.task = function(ctx, name, {role,
                                     portMappings,
                                     skipGroup,
                                     mountPoints,
+                                    volumes,
                                     memory}) {
     if (!skipGroup) {
         ctx = ctx.withGroup(`task:${name}`);
@@ -34,6 +35,10 @@ exports.task = function(ctx, name, {role,
             name: `/${ctx.orgName}/${ctx.env}/${name}`
         });
     };
+
+    if (!volumes) {
+        volumes = [];
+    }
 
     let containerDef = {
         name: displayName,
