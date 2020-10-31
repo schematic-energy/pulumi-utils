@@ -20,6 +20,7 @@ exports.task = function(ctx, name, {role,
                                     env,
                                     portMappings,
                                     skipGroup,
+                                    mountPoints,
                                     memory}) {
     if (!skipGroup) {
         ctx = ctx.withGroup(`task:${name}`);
@@ -50,6 +51,10 @@ exports.task = function(ctx, name, {role,
 
     if( commands && commands.length > 0) {
         containerDef.entryPoint = ["sh", "-c", pu.defer(c => c.join(" && "), commands)];
+    }
+
+    if (mountPoints && mountPoints.length > 0 ) {
+        containerDef.mountPoints = mountPoints;
     }
 
     if( env && Object.keys(env).length > 0 ) {
