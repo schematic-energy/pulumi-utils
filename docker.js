@@ -99,7 +99,8 @@ exports.task = function(ctx, name, {role,
                   memory: memory || 512,
                   taskRoleArn: role,
                   executionRoleArn: role,
-                  containerDefinitions: pu.stringify([containerDef])
+                  containerDefinitions: pu.stringify([containerDef]),
+                  volumes: volumes
                  });
 };
 
