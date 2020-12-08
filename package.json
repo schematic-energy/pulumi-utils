@@ -1,9 +1,9 @@
 {
     "name": "@schematic-energy/pulumi-utils",
     "license": "Apache-2.0",
-    "version": "0.1.6",
+    "version": "0.1.7",
     "dependencies": {
-        "@pulumi/aws": "latest",
+        "@pulumi/aws": "^3.0.0",
         "@pulumi/pulumi": "^2.0.0",
         "deep-equal": "1.1.0",
         "deepmerge": "^3.1.0",
