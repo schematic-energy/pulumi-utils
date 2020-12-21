@@ -100,6 +100,8 @@ const execAwsCommand = async function({timeout, region, cmd}) {
     return result;
 };
 
+exports.execAwsCommand = execAwsCommand;
+
 /**
 
 Wraps an AWS CLI command in a Pulumi resource. Upon creation and
