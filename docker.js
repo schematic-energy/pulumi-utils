@@ -80,7 +80,7 @@ exports.task = function(ctx, name, {role,
                                               "ecr:DescribeImages",
                                               "ecr:BatchGetImage"]));
 
-        policyStatements.push(iam.policyStmt([logGroup.arn],
+        policyStatements.push(iam.policyStmt(["*"],
                                              ["logs:CreateLogStream",
                                               "logs:PutLogEvents"]));
 
